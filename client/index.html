@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nodegle Chat</title>
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
+    <script defer src="app.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    html, body {
+        background-color: #1a1a1a;
+        color: #f2f2f2;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 800px;
+        height: 100%;
+        max-height: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .chat-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        width: 100%;
+        max-height: 600px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        padding: 20px;
+        box-sizing: border-box;
+        background-color: #2b2b2b;
+        border-radius: 10px;
+    }
+
+    .chat-box li {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        margin-bottom: 10px;
+    }
+
+    .chat-box li .message {
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #3a3a3a;
+        color: #f2f2f2;
+        font-size: 16px;
+        line-height: 1.5;
+        max-width: 80%;
+    }
+
+    .chat-box li .time {
+        font-size: 12px;
+        color: #999;
+        margin-top: 5px;
+    }
+
+    .input-box {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .input-box input {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        margin-right: 10px;
+        background-color: #2b2b2b;
+        color: #f2f2f2;
+        font-size: 16px;
+        line-height: 1.5;
+        border: 2px solid #4CAF50;
+    }
+
+    .input-box button {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+        height: 100%;
+    }
+
+    .input-box button:hover {
+        background-color: #3e8e41;
+    }
+
+    .input-box button:focus {
+        outline: none;
+    }
+
+    .input-box input:focus {
+        outline: none;
+        box-shadow: none;
+        border: 2px solid #4CAF50;
+    }
+
+    .input-box input::placeholder {
+        color: #f2f2f2;
+    }
+
+    @media screen and (max-width: 600px) {
+        .container {
+            padding: 10px;
+        }
+
+        .chat-box li .message {
+            max-width: 100%;
+        }
+    }
+
+    /* Dope effects */
+    .chat-box li:nth-child(odd) .message {
+        background-color: #4CAF50;
+    }
+
+    .chat-box li:nth-child(even) .message {
+        background-color: #3e8e41;
+    }
+
+    .chat-box li:nth-child(1) .message {
+        animation: slideIn 0.5s ease-in-out;
+    }
+
+    .chat-box li:nth-child(2) .message {
+        animation: slideIn 0.5s ease-in-out 0.1s;
+    }
+
+    .chat-box li:nth-child(3) .message {
+        animation: slideIn 0.5s ease-in-out 0.2s;
+    }
+
+    .chat-box li:nth-child(4) .message {
+        animation: slideIn 0.5s ease-in-out 0.3s;
+    }
+
+    .chat-box li:nth-child(5) .message {
+        animation: slideIn 0.5s ease-in-out 0.4s;
+    }
+
+ 
+
+    @keyframes slideIn {
+        0% {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="chat-box">
+            <ul>
+
+            </ul>
+        </div>
+
+        <div class="input-box">
+            <input placeholder="Type your message...">
+            <button>Send</button>
+        </div>
+    </div>
+</body>
+</html>
